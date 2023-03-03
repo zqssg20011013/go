@@ -1,0 +1,26 @@
+syntax = "proto3";
+option go_package=".;service";
+message  UserRequest{
+   optional uint32 Id =1;
+  optional string Name=2;
+}
+message UserResponse{
+  optional uint32 Id =1;
+  optional string Name=2;
+  optional int32 Age=3;
+  optional  string  Birthday=4;
+   optional string Email=5;
+   optional string password=6;
+}
+message Responses{
+   repeated  UserResponse response =1;
+}
+service DB{
+  rpc insert(UserRequest)returns (UserResponse){}
+  rpc show(UserRequest)returns (UserResponse){}
+  rpc search(UserRequest)returns (UserResponse){}
+  rpc delete(UserRequest)returns (UserResponse){}
+  rpc translationsearch(UserRequest)returns (UserResponse){}
+  rpc translationsearchauto(UserRequest)returns (UserResponse){}
+  rpc Like(UserRequest)returns( Responses){}
+}
